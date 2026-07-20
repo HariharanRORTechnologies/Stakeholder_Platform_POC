@@ -4,7 +4,6 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/Stakeholder-Platform-POC/',
   plugins: [react()],
   server: {
     port: 5173,
