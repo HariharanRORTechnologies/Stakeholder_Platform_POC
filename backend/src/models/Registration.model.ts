@@ -9,17 +9,17 @@ export enum RegistrationStatus {
 }
 
 export class Registration {
-  id: number;
-  eventId: number;
-  userId: number;
-  status: RegistrationStatus;
-  registrationDate: Date;
+  id: number = 0;
+  eventId: number = 0;
+  userId: number = 0;
+  status: RegistrationStatus = RegistrationStatus.PENDING;
+  registrationDate: Date = new Date();
   approvedBy?: number;
   checkedInAt?: Date;
   attendedAt?: Date;
   notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
   deletedAt?: Date;
 
   constructor(data: Partial<Registration> = {}) {
@@ -43,15 +43,15 @@ export class Registration {
 }
 
 export class Attendance {
-  id: number;
-  registrationId: number;
-  eventId: number;
-  userId: number;
-  checkedInAt: Date;
+  id: number = 0;
+  registrationId: number = 0;
+  eventId: number = 0;
+  userId: number = 0;
+  checkedInAt: Date = new Date();
   checkedOutAt?: Date;
   duration?: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Attendance> = {}) {
     Object.assign(this, data);

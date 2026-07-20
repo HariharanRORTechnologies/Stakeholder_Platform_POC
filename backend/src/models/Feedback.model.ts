@@ -5,16 +5,16 @@ export enum FeedbackStatus {
 }
 
 export class Feedback {
-  id: number;
-  eventId: number;
-  userId: number;
-  rating: number;
+  id: number = 0;
+  eventId: number = 0;
+  userId: number = 0;
+  rating: number = 0;
   title?: string;
-  content: string;
-  status: FeedbackStatus;
-  isAnonymous: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  content: string = '';
+  status: FeedbackStatus = FeedbackStatus.PENDING;
+  isAnonymous: boolean = false;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
   deletedAt?: Date;
 
   constructor(data: Partial<Feedback> = {}) {
@@ -27,18 +27,18 @@ export class Feedback {
 }
 
 export class Certificate {
-  id: number;
-  eventId: number;
-  userId: number;
-  title: string;
+  id: number = 0;
+  eventId: number = 0;
+  userId: number = 0;
+  title: string = '';
   description?: string;
   templateUrl?: string;
   certificateUrl?: string;
-  issuedDate: Date;
-  verificationCode: string;
-  isVerified: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  issuedDate: Date = new Date();
+  verificationCode: string = '';
+  isVerified: boolean = false;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Certificate> = {}) {
     Object.assign(this, data);

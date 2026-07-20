@@ -20,7 +20,7 @@ export async function initializeDatabase(): Promise<mysql.Pool> {
       connectionLimit: envConfig.DB_POOL_SIZE,
       queueLimit: 0,
       enableKeepAlive: true,
-      keepAliveInitialDelayMs: 0,
+      keepAliveInitialDelay: 0,
       charset: 'utf8mb4',
       timezone: '+00:00',
     });

@@ -1,12 +1,12 @@
 export class Role {
-  id: number;
-  name: string;
+  id: number = 0;
+  name: string = '';
   description?: string;
-  level: number;
-  isSystem: boolean;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  level: number = 0;
+  isSystem: boolean = false;
+  isActive: boolean = true;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Role> = {}) {
     Object.assign(this, data);

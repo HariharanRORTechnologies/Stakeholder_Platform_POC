@@ -21,10 +21,10 @@ export class TokenUtils {
 
   static generateAccessToken(payload: Omit<JWTPayload, 'iat' | 'exp'>): string {
     try {
-      return jwt.sign(payload, envConfig.JWT_SECRET, {
-        expiresIn: envConfig.JWT_EXPIRY,
+      return jwt.sign(payload, envConfig.JWT_SECRET as string, {
+        expiresIn: envConfig.JWT_EXPIRY as string,
         algorithm: 'HS256',
-      });
+      } as jwt.SignOptions);
     } catch (error) {
       logger.error('Failed to generate access token', { error });
       throw new AppError('Failed to generate access token', 500);
@@ -33,10 +33,10 @@ export class TokenUtils {
 
   static generateRefreshToken(userId: number): string {
     try {
-      return jwt.sign({ userId }, envConfig.JWT_REFRESH_SECRET, {
-        expiresIn: envConfig.JWT_REFRESH_EXPIRY,
+      return jwt.sign({ userId }, envConfig.JWT_REFRESH_SECRET as string, {
+        expiresIn: envConfig.JWT_REFRESH_EXPIRY as string,
         algorithm: 'HS256',
-      });
+      } as jwt.SignOptions);
     } catch (error) {
       logger.error('Failed to generate refresh token', { error });
       throw new AppError('Failed to generate refresh token', 500);

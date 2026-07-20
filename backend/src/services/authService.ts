@@ -12,6 +12,7 @@ import {
   MFASetupResponse,
   PasswordReset,
   JWTPayload,
+  MFAMethod,
 } from '../types/auth.types';
 import {
   AuthenticationError,
@@ -178,7 +179,7 @@ export class AuthService {
     await this.userRepository.update(userId, {
       mfaEnabled: true,
       mfaSecret: secret,
-      mfaMethod: 'totp',
+      mfaMethod: MFAMethod.TOTP,
     });
 
     await this.storeBackupCodes(userId, backupCodeHashes);

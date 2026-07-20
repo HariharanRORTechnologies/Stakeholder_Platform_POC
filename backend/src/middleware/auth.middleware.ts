@@ -143,3 +143,6 @@ export class AuthMiddleware {
     return cookies;
   }
 }
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) =>
+  AuthMiddleware.verifyToken(req, res, next);

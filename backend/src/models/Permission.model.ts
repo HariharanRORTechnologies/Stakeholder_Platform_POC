@@ -15,13 +15,13 @@ export enum PermissionCategory {
 }
 
 export class Permission {
-  id: number;
-  name: string;
+  id: number = 0;
+  name: string = '';
   description?: string;
-  category: PermissionCategory | string;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  category: PermissionCategory | string = PermissionCategory.USERS;
+  isActive: boolean = true;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Permission> = {}) {
     Object.assign(this, data);

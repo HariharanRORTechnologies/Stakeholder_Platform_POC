@@ -84,18 +84,19 @@ export function createApp(db: Pool): Express {
     });
   });
 
-  app.use((err: Error | AppError, req: Request, res: Response, next: NextFunction) => {
+  app.use((err: Error | AppError, req: Request, res: Response, next: NextFunction): void => {
     if (err instanceof AppError) {
       logger.error(`AppError: ${err.message}`, {
         statusCode: err.statusCode,
         details: err.details,
       });
 
-      return res.status(err.statusCode).json({
+      res.status(err.statusCode).json({
         success: false,
         message: err.message,
         details: err.details,
       });
+      return;
     }
 
     logger.error(`Unhandled error: ${err.message}`, { error: err });

@@ -19,26 +19,26 @@ export enum EventType {
 }
 
 export class Event {
-  id: number;
-  title: string;
+  id: number = 0;
+  title: string = '';
   description?: string;
-  eventType: EventType | string;
-  status: EventStatus;
-  startDate: Date;
-  endDate: Date;
+  eventType: EventType | string = EventType.CORPORATE;
+  status: EventStatus = EventStatus.DRAFT;
+  startDate: Date = new Date();
+  endDate: Date = new Date();
   location?: string;
-  maxCapacity: number;
+  maxCapacity: number = 0;
   registrationDeadline?: Date;
-  organizerId: number;
+  organizerId: number = 0;
   departmentId?: number;
   categoryId?: number;
   budget?: number;
   imageUrl?: string;
-  createdBy: number;
+  createdBy: number = 0;
   approvedBy?: number;
-  isPublished: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  isPublished: boolean = false;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
   deletedAt?: Date;
 
   constructor(data: Partial<Event> = {}) {

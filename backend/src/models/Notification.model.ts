@@ -17,19 +17,19 @@ export enum NotificationType {
 }
 
 export class Notification {
-  id: number;
-  userId: number;
-  type: NotificationType;
-  title: string;
-  message: string;
-  channel: NotificationChannel;
+  id: number = 0;
+  userId: number = 0;
+  type: NotificationType = NotificationType.SYSTEM;
+  title: string = '';
+  message: string = '';
+  channel: NotificationChannel = NotificationChannel.IN_APP;
   recipientAddress?: string;
-  isRead: boolean;
+  isRead: boolean = false;
   sentAt?: Date;
   readAt?: Date;
   metadata?: Record<string, any>;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Notification> = {}) {
     Object.assign(this, data);
@@ -46,15 +46,15 @@ export class Notification {
 }
 
 export class NotificationTemplate {
-  id: number;
-  name: string;
-  type: NotificationType;
+  id: number = 0;
+  name: string = '';
+  type: NotificationType = NotificationType.SYSTEM;
   subject?: string;
-  bodyTemplate: string;
-  channels: NotificationChannel[];
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  bodyTemplate: string = '';
+  channels: NotificationChannel[] = [];
+  isActive: boolean = true;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<NotificationTemplate> = {}) {
     Object.assign(this, data);

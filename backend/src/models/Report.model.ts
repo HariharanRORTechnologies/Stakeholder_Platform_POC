@@ -9,20 +9,20 @@ export enum ReportType {
 }
 
 export class Report {
-  id: number;
-  title: string;
-  type: ReportType;
+  id: number = 0;
+  title: string = '';
+  type: ReportType = ReportType.CUSTOM;
   description?: string;
-  generatedBy: number;
-  startDate: Date;
-  endDate: Date;
+  generatedBy: number = 0;
+  startDate: Date = new Date();
+  endDate: Date = new Date();
   eventIds?: number[];
   filters?: Record<string, any>;
   data?: Record<string, any>;
   fileUrl?: string;
-  status: 'pending' | 'generated' | 'failed';
-  createdAt: Date;
-  updatedAt: Date;
+  status: 'pending' | 'generated' | 'failed' = 'pending';
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
 
   constructor(data: Partial<Report> = {}) {
     Object.assign(this, data);

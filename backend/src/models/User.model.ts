@@ -1,27 +1,27 @@
 import { AuthProvider, MFAMethod } from '../types/auth.types';
 
 export class User {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  passwordHash: string;
+  id: number = 0;
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  passwordHash: string = '';
   phoneNumber?: string;
   avatarUrl?: string;
   departmentId?: number;
-  authProvider: AuthProvider;
-  isActive: boolean;
-  isEmailVerified: boolean;
+  authProvider: AuthProvider = AuthProvider.LOCAL;
+  isActive: boolean = true;
+  isEmailVerified: boolean = false;
   emailVerifiedAt?: Date;
   lastLoginAt?: Date;
   lastLoginIp?: string;
-  failedLoginAttempts: number;
+  failedLoginAttempts: number = 0;
   lockedUntil?: Date;
-  mfaEnabled: boolean;
+  mfaEnabled: boolean = false;
   mfaMethod?: MFAMethod;
   mfaSecret?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date = new Date();
+  updatedAt: Date = new Date();
   deletedAt?: Date;
 
   constructor(data: Partial<User> = {}) {
