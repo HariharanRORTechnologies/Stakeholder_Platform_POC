@@ -39,29 +39,58 @@ import {
   Brightness7 as LightModeIcon,
   Person as PersonIcon,
   Close as CloseSearchIcon,
+  Security as RolesIcon,
+  Lock as PermissionsIcon,
+  BarChart as AnalyticsIcon,
+  Groups as TeamIcon,
+  Assignment as TasksIcon,
+  PublicOutlined as CommunityIcon,
+  Mic as SpeakerIcon,
+  BusinessCenter as SponsorshipIcon,
+  SupportAgent as TicketsIcon,
+  Help as KnowledgeBaseIcon,
+  TrendingUp as OpportunitiesIcon,
+  Timer as HoursIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { toggleSidebar, setHasSelectedRole, setTheme } from '../features/mockData/store/uiSlice';
+import { roleConfig, UserRole } from '../config/roleConfig';
 
-interface MenuItem {
+interface MenuItemConfig {
+  id: string;
   label: string;
   icon: React.ReactNode;
   path: string;
-  roles: string[];
 }
 
-const menuItems: MenuItem[] = [
-  { label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard', roles: ['admin', 'manager', 'organizer', 'coordinator', 'stakeholder', 'volunteer'] },
-  { label: 'Events', icon: <EventIcon />, path: '/events', roles: ['admin', 'manager', 'organizer', 'coordinator', 'stakeholder', 'volunteer'] },
-  { label: 'Registrations', icon: <RegistrationIcon />, path: '/registrations', roles: ['admin', 'manager', 'organizer', 'coordinator'] },
-  { label: 'Attendees', icon: <PeopleIcon />, path: '/attendees', roles: ['admin', 'manager', 'organizer', 'coordinator'] },
-  { label: 'Reports', icon: <ReportIcon />, path: '/reports', roles: ['admin', 'manager', 'organizer'] },
-  { label: 'Feedback', icon: <FeedbackIcon />, path: '/feedback', roles: ['admin', 'manager', 'organizer', 'coordinator'] },
-  { label: 'Certificates', icon: <CertificateIcon />, path: '/certificates', roles: ['admin', 'coordinator', 'stakeholder', 'volunteer'] },
-  { label: 'Settings', icon: <SettingsIcon />, path: '/settings', roles: ['admin', 'manager'] },
-];
+const menuItemsMap: Record<string, MenuItemConfig> = {
+  dashboard: { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+  users: { id: 'users', label: 'Users', icon: <PeopleIcon />, path: '/users' },
+  roles: { id: 'roles', label: 'Roles', icon: <RolesIcon />, path: '/roles' },
+  permissions: { id: 'permissions', label: 'Permissions', icon: <PermissionsIcon />, path: '/permissions' },
+  settings: { id: 'settings', label: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+  reports: { id: 'reports', label: 'Reports', icon: <ReportIcon />, path: '/reports' },
+  analytics: { id: 'analytics', label: 'Analytics', icon: <AnalyticsIcon />, path: '/analytics' },
+  events: { id: 'events', label: 'Events', icon: <EventIcon />, path: '/events' },
+  registrations: { id: 'registrations', label: 'Registrations', icon: <RegistrationIcon />, path: '/registrations' },
+  attendees: { id: 'attendees', label: 'Attendees', icon: <PeopleIcon />, path: '/attendees' },
+  team: { id: 'team', label: 'Team Management', icon: <TeamIcon />, path: '/team' },
+  tasks: { id: 'tasks', label: 'Tasks', icon: <TasksIcon />, path: '/tasks' },
+  opportunities: { id: 'opportunities', label: 'Opportunities', icon: <OpportunitiesIcon />, path: '/opportunities' },
+  my_hours: { id: 'my_hours', label: 'My Hours', icon: <HoursIcon />, path: '/my_hours' },
+  certificates: { id: 'certificates', label: 'Certificates', icon: <CertificateIcon />, path: '/certificates' },
+  community: { id: 'community', label: 'Community', icon: <CommunityIcon />, path: '/community' },
+  my_profile: { id: 'my_profile', label: 'My Profile', icon: <PersonIcon />, path: '/profile' },
+  feedback: { id: 'feedback', label: 'Feedback', icon: <FeedbackIcon />, path: '/feedback' },
+  my_talks: { id: 'my_talks', label: 'My Talks', icon: <SpeakerIcon />, path: '/my_talks' },
+  audience_analytics: { id: 'audience_analytics', label: 'Audience Analytics', icon: <AnalyticsIcon />, path: '/audience_analytics' },
+  profile: { id: 'profile', label: 'Profile', icon: <PersonIcon />, path: '/profile' },
+  my_sponsorships: { id: 'my_sponsorships', label: 'My Sponsorships', icon: <SponsorshipIcon />, path: '/my_sponsorships' },
+  tickets: { id: 'tickets', label: 'Tickets', icon: <TicketsIcon />, path: '/tickets' },
+  knowledge_base: { id: 'knowledge_base', label: 'Knowledge Base', icon: <KnowledgeBaseIcon />, path: '/knowledge_base' },
+};
 
 const DRAWER_WIDTH = 280;
 
@@ -70,7 +99,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const sidebarOpen = useSelector((state: RootState) => state.ui.sidebarOpen);
-  const currentRole = useSelector((state: RootState) => state.ui.currentRole);
+  const currentRole = useSelector((state: RootState) => state.ui.currentRole) as UserRole;
   const theme = useSelector((state: RootState) => state.ui.theme);
   const notifications = useSelector((state: RootState) => state.mockNotifications.items);
   const unreadCount = notifications.filter(n => !n.isRead).length;
@@ -78,6 +107,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [profileMenuAnchor, setProfileMenuAnchor] = React.useState<null | HTMLElement>(null);
   const [notificationMenuAnchor, setNotificationMenuAnchor] = React.useState<null | HTMLElement>(null);
+
+  const getMenuItemsForRole = React.useMemo(() => {
+    const roleConfig_ = roleConfig[currentRole];
+    if (!roleConfig_) return [];
+
+    return roleConfig_.menuItems
+      .map(itemId => menuItemsMap[itemId])
+      .filter((item): item is MenuItemConfig => item !== undefined);
+  }, [currentRole]);
 
   const handleMenuClick = (path: string) => {
     navigate(path);
@@ -127,29 +165,35 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <Box sx={{ p: 2, flex: 1, overflowY: 'auto' }}>
         <List>
-          {menuItems.map((item) => (
-            <ListItemButton
-              key={item.path}
-              onClick={() => handleMenuClick(item.path)}
-              selected={location.pathname === item.path}
-              sx={{
-                mb: 1,
-                borderRadius: 1,
-                '&.Mui-selected': {
-                  backgroundColor: 'primary.light',
-                  '& .MuiListItemIcon-root': {
-                    color: 'primary.main',
+          {getMenuItemsForRole.length > 0 ? (
+            getMenuItemsForRole.map((item) => (
+              <ListItemButton
+                key={item.id}
+                onClick={() => handleMenuClick(item.path)}
+                selected={location.pathname === item.path}
+                sx={{
+                  mb: 1,
+                  borderRadius: 1,
+                  '&.Mui-selected': {
+                    backgroundColor: 'primary.light',
+                    '& .MuiListItemIcon-root': {
+                      color: 'primary.main',
+                    },
+                    '& .MuiListItemText-primary': {
+                      fontWeight: 'bold',
+                    },
                   },
-                  '& .MuiListItemText-primary': {
-                    fontWeight: 'bold',
-                  },
-                },
-              }}
-            >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          ))}
+                }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            ))
+          ) : (
+            <Typography variant="body2" sx={{ p: 2, color: 'text.secondary' }}>
+              No menu items available
+            </Typography>
+          )}
         </List>
       </Box>
 
