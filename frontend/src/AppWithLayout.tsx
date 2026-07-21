@@ -133,8 +133,10 @@ function ProtectedRoutes() {
 }
 
 export function AppWithLayout() {
+  const basename = import.meta.env.MODE === 'production' ? '/Stakeholder-Platform-POC' : '/';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/landing" element={<LoginPage />} />
