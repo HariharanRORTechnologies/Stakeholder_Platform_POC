@@ -133,7 +133,7 @@ function ProtectedRoutes() {
 }
 
 export function AppWithLayout() {
-  const basename = process.env.NODE_ENV === 'production' ? '/Stakeholder-Platform-POC' : '/';
+  const basename = process.env.NODE_ENV === 'production' ? '/Stakeholder_Platform_POC' : '/';
 
   return (
     <Router basename={basename}>
