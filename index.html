@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23667eea'>S</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Stakeholder Platform - Enterprise Event Management System" />
+    <meta name="keywords" content="events, stakeholders, engagement, platform, management" />
+    <meta name="author" content="Stakeholder Platform Team" />
+    <meta name="theme-color" content="#16A34A" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Stakeholder Platform" />
+    <meta property="og:description" content="Enterprise platform for managing events, stakeholder engagement, and community impact" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'><rect fill='%23667eea' width='1200' height='630'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold'>Stakeholder Platform</text></svg>" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Stakeholder Platform" />
+    <meta name="twitter:description" content="Enterprise Event Management & Stakeholder Engagement Platform" />
+
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Variants -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100' rx='20'/><text y='75' font-size='75' fill='white' font-weight='bold'>S</text></svg>" />
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:" />
+
+    <!-- Loading Styles -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body, #root {
+        width: 100%;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .app-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+        z-index: 9999;
+      }
+
+      .loader-content {
+        text-align: center;
+        color: white;
+      }
+
+      .loader-logo {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .loader-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .loader-subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 40px;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+
+      #root {
+        background: white;
+      }
+
+      /* No-JS Fallback */
+      noscript {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+
+    <title>Stakeholder Platform - Enterprise Event Management</title>
+    <script type="module" crossorigin src="/assets/index-B0APq8oR.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/ui-libs-CKETV6ww.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-core-viZmMwgx.js">
+    <link rel="modulepreload" crossorigin href="/assets/charts-tGa3u03F.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CMdAGT9b.css">
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="app-loader" id="loader">
+      <div class="loader-content">
+        <div class="loader-logo">S</div>
+        <div class="loader-title">Stakeholder Platform</div>
+        <div class="loader-subtitle">Enterprise Event Management System</div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Root React Element -->
+    <div id="root"></div>
+
+    <!-- No JavaScript Fallback -->
+    <noscript>
+      <div>
+        <h1>JavaScript Required</h1>
+        <p>Stakeholder Platform requires JavaScript to be enabled.</p>
+        <p>Please enable JavaScript in your browser settings and refresh the page.</p>
+      </div>
+    </noscript>
+
+    <!-- Main Application Script -->
+
+    <!-- Remove Loader When App Loads -->
+    <script>
+      // Remove loader after a short delay when React mounts
+      const loaderElement = document.getElementById('loader');
+
+      // Listen for React to mount and remove loader
+      const removeLoader = () => {
+        if (loaderElement && loaderElement.parentNode) {
+          loaderElement.style.opacity = '0';
+          loaderElement.style.transition = 'opacity 0.3s ease-out';
+          setTimeout(() => {
+            if (loaderElement && loaderElement.parentNode) {
+              loaderElement.parentNode.removeChild(loaderElement);
+            }
+          }, 300);
+        }
+      };
+
+      // Set timeout as fallback (in case React takes longer to mount)
+      setTimeout(removeLoader, 3000);
+
+      // Observe root element for React content
+      if (document.getElementById('root')) {
+        const observer = new MutationObserver(() => {
+          const root = document.getElementById('root');
+          if (root && root.children.length > 0) {
+            removeLoader();
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.getElementById('root'), {
+          childList: true,
+          subtree: true
+        });
+      }
+    </script>
+  </body>
+</html>
