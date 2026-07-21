@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Stakeholder Engagement Platform - React Frontend",
   "type": "module",
-  "homepage": "https://HariharanRORTechnologies.github.io/Stakeholder-Platform-POC/",
+  "homepage": "https://HariharanRORTechnologies.github.io/Stakeholder_Platform_POC/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
